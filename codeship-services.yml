@@ -1,0 +1,5 @@
+demodockerfile:
+  build:
+    image: cartahub/devops
+    dockerfile_path: Dockerfile 
+

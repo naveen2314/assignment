@@ -7,4 +7,6 @@ COPY . .
 RUN mv secret.txt /var/secret.txt
 RUN pip install -r requirements.txt
 
-CMD [ "carta-devops" ]
+EXPOSE 5000
+CMD [ "carta-devops" , "serve"]
+#ENTRYPOINT [ "carta-devops" , "serve" ]
