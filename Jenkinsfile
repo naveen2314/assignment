@@ -17,7 +17,7 @@ node {
     docker.image('naveen2314/assignement_image').inside {
 
         stage("Check Test") {
-         sh "cartahub test"
+         sh "carta-devops test"
         }
 
     }    
