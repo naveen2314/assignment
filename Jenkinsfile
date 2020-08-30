@@ -11,15 +11,23 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("naveen2314/assignement_image")
+        app = docker.build("naveen2314/assignement_image:v1")
     }
+
+    docker.image('naveen2314/assignement_image').inside {
+
+        stage("Check Test") {
+         sh "cartahub test"
+        }
+
+    }    
 
     stage('Test image') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
 
         app.inside {
-            sh 'echo "Tests passed"'
+            sh 'cartahub/devops test'
         }
     }
 
