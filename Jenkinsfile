@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("naveen2314/assignement_image:v1")
+        app = docker.build("naveen2314/assignement_image")
     }
 
     /*docker.image('naveen2314/assignement_image').inside {
