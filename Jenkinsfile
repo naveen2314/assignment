@@ -1,6 +1,6 @@
 node {
     def app
-
+    
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
 
@@ -14,20 +14,13 @@ node {
         app = docker.build("naveen2314/assignement_image")
     }
 
-    /*docker.image('naveen2314/assignement_image').inside {
+   
 
-        stage("Check Test") {
-         sh "carta-devops test"
-        }
-
-    } */   
-
-    stage('Test image') {
+    stage('Test') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
-        docker.image('naveen2314/assignement_image').inside {
-        //app.inside {
-            sh 'cartahub/devops test'
+        app.inside {
+            sh 'carta-devops test'
         }
     }
 
