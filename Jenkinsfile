@@ -14,19 +14,19 @@ node {
         app = docker.build("naveen2314/assignement_image:v1")
     }
 
-    docker.image('naveen2314/assignement_image').inside {
+    /*docker.image('naveen2314/assignement_image').inside {
 
         stage("Check Test") {
          sh "carta-devops test"
         }
 
-    }    
+    } */   
 
     stage('Test image') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
-
-        app.inside {
+        docker.image('naveen2314/assignement_image').inside {
+        //app.inside {
             sh 'cartahub/devops test'
         }
     }
