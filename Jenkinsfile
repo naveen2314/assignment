@@ -20,7 +20,8 @@ node {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
         app.inside {
-            sh 'carta-devops test'
+            docker run -it -p 5000:5000 naveen2314/assignement_image sh carta-devops test
+            
         }
     }
 
