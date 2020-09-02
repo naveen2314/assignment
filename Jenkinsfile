@@ -12,11 +12,8 @@ node {
          * docker build on the command line */
 
         steps {
-            bash '''
-            #!/bin/bash
-            docker commit assignemen_nvn_cont assignement_nvn:v1
-            docker run --name assignemen_nvn_1 -d -p 5000:5000 assignement_nvn:v1
-            '''
+            bash docker commit assignemen_nvn_cont assignement_nvn:v1
+            bash docker run --name assignemen_nvn_1 -d -p 5000:5000 assignement_nvn:v1
         }
     }
 
