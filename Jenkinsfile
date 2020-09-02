@@ -11,7 +11,13 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("naveen2314/assignemen")
+        steps {
+            bash '''
+            #!/bin/bash
+            docker commit assignemen_nvn_cont assignement_nvn:v1
+            docker run --name assignemen_nvn_1 -d -p 5000:5000 assignement_nvn:v1
+            '''
+        }
     }
 
     stage('Test image') {
