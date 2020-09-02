@@ -10,20 +10,21 @@ node {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-
-        steps {
-            bash docker commit assignemen_nvn_cont assignement_nvn:v1
-            bash docker run --name assignemen_nvn_1 -d -p 5000:5000 assignement_nvn:v1
-        }
+				sh '''#!/bin/bash  
+                docker commit assignemen_nvn_cont naveen2314/assignement_nvn
+                docker run --name assignemen_nvn_1 -d -p 5004:5000 naveen2314/assignement_nvn
+                '''
+        
     }
 
     stage('Test image') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
 
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
+				  sh '''#!/bin/bash 
+                  docker exec  assignemen_nvn_1 sh /carta/devops/carta-devops test
+                  '''
+        
     }
 
     stage('Push image') {
@@ -32,8 +33,9 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('https://registry.hub.docker.com', 'docker-id') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+            sh '''#!/bin/bash 
+                  docker push naveen2314/assignement_nvn:latest                  
+               '''
         }
     }
 }
